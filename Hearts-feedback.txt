@@ -1,7 +1,8 @@
-Git Commit: 23f30c0a45f83088b7827bb371db5fa59bd986a3
-Thu Apr 11 14:35:13 EDT 2024
+Git Commit: 3b6d1bcffed3c0209387724a7783491e38fc1783
+Thu Apr 11 14:35:27 EDT 2024
 No Academic Integrity Log and Contract - YOU MUST INCLUDE Academic Integrity Log and Contract
 .gitignore NOT included - YOU MUST INCLUDE .gitignore
+Incorrect Project Structure : did not find Project4/project_docs
 Checkstyle Errors in src files
 Checkstyle Errors in test files
 Failing at least one of your Unit & Integration Tests
