@@ -6,248 +6,280 @@ import org.junit.jupiter.api.Test;
 //TODO: Add documentation to pass checkstyle
 
 /**
- * Tests Card class
+ * Tests Player class
  * 
  * @author Jessica Young Schmidt
  * @author
  */
-public class CardTest {
+public class PlayerTest {
 
-    /** three of clubs */
+    /** Test player */
+    private Player testPlayer;
+
+    /** Three of clubs */
     private Card c3;
-      
+    
+    
+    
 
     /**
-     * Sets up field for testing
+     * Set up fields for tests
      */
     @BeforeEach
     public void setUp() {
-        c3 = new Card('c', 3);       
-    }
-
-    /**
-     * Test invalid constructor parameters
-     */
-    @Test
-    public void testInvalidConstructorParameters() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Card('a', 33),
-                "invalid suit");
-        assertEquals("Invalid suit", exception.getMessage(), "invalid suit - exception message");
-
-        exception = assertThrows(IllegalArgumentException.class, () -> new Card('c', 1),
-                "invalid value (1)");
-        assertEquals("Invalid value", exception.getMessage(),
-                "invalid value (1) - exception message");
-
-        // NOTE: You are not required to add additional invalid parameter test. However,
-        // you may add tests if you would like. Not all paths through your Card
-        // constructors will be tested by the given tests above.
-    }
-    
-  
-
-    /**
-     * Test getSuit for three of clubs
-     */
-    @Test
-    public void testGetSuitA() {
-        assertEquals('c', c3.getSuit(), "Test getSuit for three of clubs");
+        testPlayer = new Player("Human");
+        c3 = new Card('c', 3);
     }
 
     @Test
-    public void testGetSuitB() {
-        // TODO: Write another test of getSuit
-        // 1. Create a new Card (not a club)
-        // 2. Write an assertEquals test for getSuit for created card
-        fail("No test added");        
-    }
-
-    /**
-     * Test getValue for three of clubs
-     */
-    @Test
-    public void testGetValueA() {
-        assertEquals(3, c3.getValue(), "Test getValue for three of clubs");
+    public void testConstructor() {
+        assertEquals("Human", testPlayer.getName(), "Test constructor: getName");
+        for (int i = 0; i < 13; i++) {
+            assertNull(testPlayer.getCard(i), "Test that card " + i + " is null");
+        }
+        assertEquals(0, testPlayer.getHandPoints(), "Test constructor: getHandPoints");
+        assertEquals(0, testPlayer.getOverallPoints(), "Test constructor: getOverallPoints");
     }
 
     @Test
-    public void testGetValueB() {
-        // TODO: Write another test of getValue
-        // 1. Create a new Card (not a 3)
-        // 2. Write an assertEquals test for getValue for created card
-        fail("No test added");
-    }
+    public void testAddCardA() {
+        // Test that there are no cards in hand
+        String id = "test that first card of hand is null";
+        assertNull(testPlayer.getCard(0), id);
 
-    /**
-     * Test hasBeenPlayed
-     */
-    @Test
-    public void testHasBeenPlayed() {
-        assertFalse(c3.hasBeenPlayed(), "Test hasBeenPlayed for three of clubs before played");
-        c3.setPlayed(true);
-        assertTrue(c3.hasBeenPlayed(), "Test hasBeenPlayed for three of clubs after played");
-    }
-    
+        // Add a card to the hand
+        testPlayer.addCard(c3);
+        id = "test that card is added as first card";
+        assertEquals(new Card('c', 3), testPlayer.getCard(0), id);
+                for (int i = 1; i < 13; i++) {
+                    assertNull(testPlayer.getCard(i), "Test that card " + i + " is null");
+                }
+            }
 
     @Test
-    public void testSetPlayed() {
-        // TODO: Write test for setPlayed method using c3
-        // 1. call setPlayed(true)
-        // 2. assertTrue for hasBeenPlayed
-        // 3. call setPlayed(false)
-        // 4. assertFalse for hadBeenPlayed
-        fail("No test added");        
-    }
+    public void testAddCardB() {
+        String id = "test that first card of hand is null";
+        assertNull(testPlayer.getCard(0), id);
        
+       
+        Card c2 = new Card('c', 2);
+        Card c12 = new Card('c', 12);
+        Card d4 = new Card('d', 4);
+        Card d5 = new Card('d', 5);
+        Card d7 = new Card('d', 7);
+        Card d12 = new Card('d', 12);
+        Card s5 = new Card('s', 5);
+        Card s11 = new Card('s', 11);
+        Card s12 = new Card('s', 12);
+        Card h2 = new Card('h', 2);
+        Card h3 = new Card('h', 3);
+        
+        testPlayer.addCard(c2);
+        testPlayer.addCard(c12);
+        testPlayer.addCard(d4);
+        testPlayer.addCard(d5);
+        testPlayer.addCard(d7);
+        testPlayer.addCard(d12);
+        testPlayer.addCard(s5);
+        testPlayer.addCard(s11);
+        testPlayer.addCard(s12);
+        testPlayer.addCard(h2);
+        testPlayer.addCard(h3);
+        
+        id = "test that card is added as 13 th card";
+        assertEquals(h3, testPlayer.getCard(10), id);
+        for (int i = 11; i < 13; i++) {
+            assertNull(testPlayer.getCard(i), "Test that card " + i + " is null");
+        }
+    }
 
-    /**
-     * Test isHeart for three of clubs
-     */
+      
+
+
+           
+    
+
     @Test
-    public void testIsHeartA() {
-        assertFalse(c3.isHeart(), "Test isHeart for three of clubs");
+    public void testGetCardException() {
+        Exception exception = assertThrows(IllegalArgumentException.class,
+            () -> testPlayer.getCard(-1), "Invalid index");
+        assertEquals("Invalid index", exception.getMessage(), "Invalid index - exception message");
     }
 
     @Test
-    public void testIsHeartB() {
-        // TODO: Write test for isHeart that will return true (create a new Card that is a heart)
+    public void testHasActiveCardOfSuitException() {
+        Exception exception = assertThrows(IllegalStateException.class,
+            () -> testPlayer.hasActiveCardOfSuit('c'), "Hand not full");
+        assertEquals("Hand not full", exception.getMessage(), "Hand not full - exception message");
+    }
+
+    @Test
+    public void testOnlyHasHeartsException() {
+        Exception exception = assertThrows(IllegalStateException.class,
+            () -> testPlayer.onlyHasHearts(), "Hand not full");
+        assertEquals("Hand not full", exception.getMessage(), "Hand not full - exception message");
+    }
+
+    @Test
+    public void testGetCardNamesException() {
+        Exception exception = assertThrows(IllegalStateException.class,
+            () -> testPlayer.getCardNames(), "Hand not full");
+        assertEquals("Hand not full", exception.getMessage(), "Hand not full - exception message");
+    }
+
+
+    /**
+     * test hasActiveCardOfSuit for hand with all cards of suit already played
+     */     
+    @Test
+    public void testHasActiveCardOfSuitA() {
+        // hand has to be full
+        testPlayer.addCard(c3);
+        for (int i = 2; i < 14; i++) {
+            testPlayer.addCard(new Card (Card.HEARTS, i));
+        }
+        Card card = testPlayer.getCard(0);
+        card.setPlayed(true);
+        assertFalse(testPlayer.hasActiveCardOfSuit('c'));
+    }
+
+    @Test
+    public void testHasActiveCardOfSuitB() {
+        // TODO: write test of hasActiveCardOfSuit that results in true
+        fail("No test added");        
+    }
+
+    @Test
+    public void testHasActiveCardOfSuitC() {
+        // TODO: write test of hasActiveCardOfSuit that results in false 
+        // because no cards of that suit have been added to the hand
+        fail("No test added");        
+    }   
+
+
+    @Test
+    public void testOnlyHasHeartsA() {
+        for (int i = 2; i <= 14; i++) {
+            testPlayer.addCard(new Card (Card.HEARTS, i));
+        }
+        assertTrue(testPlayer.onlyHasHearts(), "player has only hearts");
+    }
+
+    @Test
+    public void testOnlyHasHeartsB() {
+        // TODO: write test of onlyHasHearts for a player that results in false
+        // because no hearts were added to the hand
+        fail("No test added");        
+    }
+    
+    @Test
+    public void testOnlyHasHeartsC() {
+        // TODO: write test of onlyHasHearts for a player that results in false
+        // when player has both hearts and non-hearts not played in their hand
+        fail("No test added");        
+    }
+    
+
+    @Test
+    public void testGetCardNames() {
+        String[] names = new String[13];
+        for (int i = 2; i <= 14; i++) {
+            testPlayer.addCard(new Card (Card.CLUBS, i));
+            names[i - 2] = "" + Card.CLUBS + i;
+        }
+        assertArrayEquals(names, testPlayer.getCardNames(), "test getCardNames() for all clubs");  
+    }
+
+
+    @Test
+    public void testAddToHandPoints() {
+        // TODO: Add test for addToHandPoints
+        // 1. add points to hand
+        // 2. add more points to hand        
+        // 3. test that getHandPoints() returns the correct value
+        // 4. test that getOverallPoints() returns the correct value
+        fail("No test added");        
+    }
+
+    @Test
+    public void testResetHandPoints() {
+        // TODO: Add test for resetHandPoints
+        // 1. add points to hand  
+        // 2. test that getHandPoints() returns the correct value
+        // 3. call resetHandPoints()
+        // 4. test that getHandPoints returns 0        
         fail("No test added");
     }
 
-    /**
-     * Test toString for three of clubs
-     */
     @Test
-    public void testToStringA() {
-        assertEquals("c3", c3.toString(), "Test toString for three of clubs");
-    }
-
-    @Test
-    public void testToStringB() {
-        // TODO: Write another test for toString
-        // 1. Create a new Card (not a 3 of clubs)
-        // 2. Write an assertEquals test for toString for created card
-        fail("No test added");        
+    public void testDumpCards() {
         
+        testPlayer.addCard(c3);
+        String id = "test dump Cards(): cards [0] not null before dump";
+        assertEquals(new Card('c', 3), testPlayer.getCard(0), id);
+        testPlayer.dumpCards();
+        id = "test dumpCards: cards[0] = null after dump";
+        assertEquals(null, testPlayer.getCard(0), id);
+        testPlayer.addCard(c3);
+        id = "test dump Cards(): next was reset to 0";
+        assertEquals(new Card('c', 3), testPlayer.getCard(0), id);       
     }
-
+    
     /**
-     * Test equals for three of clubs
+     * Tests toString
      */
     @Test
-    public void testEqualsA() {
-        assertTrue(c3.equals(c3), "Test equals for three of clubs");
+    public void testToString() {
+        assertEquals("Human: 0", testPlayer.toString(), "Test toString");
     }
 
     @Test
-    public void testEqualsB() {
-        // TODO: Write test for equals that would return false - cards with different
-        // suits
+    public void testToStringNonZeroPoints() {
+        // TODO: Add test for toString for non-zero points
         fail("No test added");        
     }
-
-    @Test
-    public void testEqualsC() {
-        // TODO: Write test for equals that would return false - cards with same suit
-        // but different values
-        fail("No test added");        
-    }
-
-    @Test
-    public void testEqualsD() {
-        // TODO: Write test for equals that would return false - cards with same suit
-        // and same value but different hasBeenPlayed
-        fail("No test added");        
-    }
+    
+    
 
     /**
-     * Test compareTo for three of clubs and three of spades
+     * Test getMove method
      */
     @Test
-    public void testCompareToA() {
-        Card s3 = new Card('s', 3);
-        assertTrue(c3.compareTo(s3) < 0, "Test compareTo for three of clubs and three of spades");
-    }
+    public void testGetMove() {
 
-    @Test
-    public void testCompareToB() {
         Card c2 = new Card('c', 2);
-        assertTrue(c3.compareTo(c2) > 0,"Test compareTo for three of clubs and two of clubs");
-    }
-
-    @Test
-    public void testCompareToC() {
+        Card c12 = new Card('c', 12);
+        Card d4 = new Card('d', 4);
+        Card d5 = new Card('d', 5);
+        Card d7 = new Card('d', 7);
+        Card d12 = new Card('d', 12);
+        Card s5 = new Card('s', 5);
+        Card s11 = new Card('s', 11);
+        Card s12 = new Card('s', 12);
         Card h2 = new Card('h', 2);
-        assertTrue(h2.compareTo(c3) > 0, "Test compareTo for two of hearts and three of clubs");
-    }
+        Card h3 = new Card('h', 3);
+        Card h5 = new Card('h', 5);
 
-    @Test
-    public void testCompareToD() {
-        Card c4 = new Card('c', 4);
-        assertTrue(c3.compareTo(c4) < 0, "Test compareTo for three of clubs and four of clubs");
-    }
+        testPlayer.addCard(c3);
+        testPlayer.addCard(h5);
+        testPlayer.addCard(d7);
+        testPlayer.addCard(s12);
+        testPlayer.addCard(c12);
+        testPlayer.addCard(c2);
+        testPlayer.addCard(d4);
+        testPlayer.addCard(h2);
+        testPlayer.addCard(s5);
+        testPlayer.addCard(s11);
+        testPlayer.addCard(d5);
+        testPlayer.addCard(h3);
+        testPlayer.addCard(d12);
 
-    @Test
-    public void testCompareToE() {
-        Card c3Two = new Card('c', 3);
-        assertEquals(0, c3.compareTo(c3Two), 
-                     "Test compareTo for three of clubs and three of clubs");
+        // Test first round (trick) and the computer player has the 2 of Clubs
+        Card c2Copy = new Card('c', 2);
+        c2Copy.setPlayed(true);
+        assertEquals(c2Copy, testPlayer.getMove(null, true, false), "Has 2 of clubs");
+        Card c3copy = new Card('c', 3);
+        c3copy.setPlayed(true);
+        assertEquals(c3copy, testPlayer.getMove(new Card('c', 4), true, false), "Lowest clubs");
     }
-
-    /**
-     * Test isQueenOfSpades for three of clubs
-     */
-    @Test
-    public void testIsQueenOfSpadesA() {
-        assertFalse(c3.isQueenOfSpades(), "Test isQueenOfSpades for three of clubs");
-    }
-
-    @Test
-    public void testIsQueenOfSpadesB() {
-        // TODO: Write test for isQueenOfSpades that would return true
-        fail("No test added");        
-    }
-
-    @Test
-    public void testIsQueenOfSpadesC() {
-        // TODO: Write test for isQueenOfSpades that would return false with card that is a spade
-        fail("No test added");        
-    }
-
-    /**
-     * Test isHigherThan for four of clubs and three of clubs
-     */
-    @Test
-    public void testIsHigherA() {
-        Card c4 = new Card('c', 4);
-        assertTrue(c4.isHigherThan(c3), "Test isHigherThan for four of clubs and three of clubs");
-        fail("No test added");        
-    }
-
-    @Test
-    public void testIsHigherB() {
-        // TODO: Write test for isHigherThan that returns false with different suits
-        fail("No test added");        
-    }
-
-    @Test
-    public void testIsHigherC() {
-        // TODO: Write test for isHigherThan that returns false with same suit
-        fail("No test added");        
-    }
-
-    /**
-     * Tests values for public constants
-     */
-    @Test
-    public void testClassConstants() {
-        assertEquals('c', Card.CLUBS, "Test CLUBS constant");
-        assertEquals('d', Card.DIAMONDS, "Test DIAMONDS constant");
-        assertEquals('s', Card.SPADES, "Test SPADES constant");
-        assertEquals('h', Card.HEARTS, "Test HEARTS constant");
-        assertEquals(2, Card.LOWEST_VALUE, "Test LOWEST_VALUE constant");
-        assertEquals(14, Card.HIGHEST_VALUE, "Test HIGHEST_VALUE constant");
-        assertEquals(12, Card.QUEEN_VALUE, "Test QUEEN_VALUE constant");
-    }
-
 }

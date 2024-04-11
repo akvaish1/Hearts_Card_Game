@@ -8,6 +8,9 @@ public class Deck {
    
     /** Represents the ammount of Cards in a deck */
     public static final int CARDS_IN_DECK = 52;
+
+    /** How many Cards in a certain suit are in the deck */
+    public static final int CARDS_PER_SUIT = 13;
    
     /** Represents an array of Cards that is used to manage CARDS_IN_DECK*/
     private Card [] cards;
@@ -23,20 +26,20 @@ public class Deck {
     public Deck() {
         this.cards = new Card[CARDS_IN_DECK];
         
-        for (int i = 0; i < Card.HIGHEST_VALUE - 1; i++) {
+        for (int i = 0; i < CARDS_PER_SUIT; i++) {
             cards[i] = new Card(Card.CLUBS,Card.LOWEST_VALUE + i);
         }
 
-        for (int i = 0; i < Card.HIGHEST_VALUE - 1; i++) {
-            cards[Card.HIGHEST_VALUE - 1 + i] = new Card(Card.DIAMONDS, Card.LOWEST_VALUE + i);
+        for (int i = 0; i < CARDS_PER_SUIT; i++) {
+            cards[CARDS_PER_SUIT + i] = new Card(Card.DIAMONDS, Card.LOWEST_VALUE + i);
         }
 
-        for(int i = 0; i < Card.HIGHEST_VALUE - 1; i++) {
-            cards[Card.HIGHEST_VALUE - 1 * 2 + i] = new Card(Card.SPADES, Card.LOWEST_VALUE + i );
+        for(int i = 0; i < CARDS_PER_SUIT; i++) {
+            cards[CARDS_PER_SUIT * 2 + i] = new Card(Card.SPADES, Card.LOWEST_VALUE + i );
         }
 
-        for(int i = 0; i < Card.HIGHEST_VALUE - 1; i++) {
-            cards[Card.HIGHEST_VALUE - 1 * 3 + i] = new Card(Card.SPADES, Card.LOWEST_VALUE + i);
+        for(int i = 0; i < CARDS_PER_SUIT; i++) {
+            cards[CARDS_PER_SUIT * 3 + i] = new Card(Card.HEARTS, Card.LOWEST_VALUE + i);
         }
         
         this.next = 0;
@@ -99,22 +102,24 @@ public class Deck {
             throw new IllegalStateException("No more cards");
         }
         
-        next++;
-        return this.cards[next];
+        this.next++;
 
+        return this.cards[this.next - 1];
+      
     }
     
     /**
      * Returns wether the deck and another object are equal
      * @param o Object that we are seeing if it is equal to the deck
-     * @return if object and deck are equal by having same value and suit
+     * @return if object and deck are equal by having same value and suit and have next index
      */
     public boolean equals(Object o) {
         if (o instanceof Deck) {
             Deck other = (Deck) o;
             for(int i = 0; i < CARDS_IN_DECK; i++) {
                 if(this.cards[i].getValue() != other.cards[i].getValue() 
-                    || this.cards[i].getSuit() != this.cards[i].getSuit() ) {
+                    || this.cards[i].getSuit() != other.cards[i].getSuit() 
+                    || this.next != other.next ) {
                     return false;
                 } 
                 
@@ -133,9 +138,9 @@ public class Deck {
      * @return String representation of the deck
      */
     public String toString() {
-        String x = null;
+        String x = "";
         for (int i = 0; i < CARDS_IN_DECK; i++) {
-            x +=  "/n" + "card " + i + ":" + this.cards[i].toString();
+            x +=  "card " + i + ": " + this.cards[i].toString() + "\n";
         }
         return x;
     }

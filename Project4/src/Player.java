@@ -58,12 +58,13 @@ public class Player {
             throw new IllegalStateException("Full Hand");
         }
         
-        hand[next] = card;
+        hand[this.next] = card;
+        this.next++;
         
         if(this.next == CARDS_IN_HAND) {
-            Arrays.sort(hand);
+            Arrays.sort(this.hand);
         }
-        next++;
+        
         
         
     }
@@ -104,7 +105,7 @@ public class Player {
     */
     public Card getCard(int index) {
         
-        if(index < 0 || index > CARDS_IN_HAND ) {
+        if(index < 0 || index >= CARDS_IN_HAND ) {
             throw new IllegalArgumentException("Invalid index");
         }
 

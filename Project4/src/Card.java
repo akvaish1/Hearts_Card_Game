@@ -43,7 +43,7 @@ public class Card implements Comparable<Card> {
     * @throws IllegalArgumentException if value is not in valid range
     */
     public Card(char suit, int value) {
-        if (suit !=  CLUBS || suit != DIAMONDS || suit != HEARTS || suit != SPADES) {
+        if (suit != CLUBS && suit != DIAMONDS && suit != HEARTS && suit != SPADES) {
             throw new IllegalArgumentException("Invalid suit");
         }
 
@@ -53,6 +53,7 @@ public class Card implements Comparable<Card> {
 
         this.suit = suit;
         this.value = value;
+        this.hasBeenPlayed = false;
     }
     
     /**  
