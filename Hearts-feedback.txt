@@ -1,8 +1,72 @@
-Git Commit: 3b6d1bcffed3c0209387724a7783491e38fc1783
-Thu Apr 11 14:35:27 EDT 2024
+Git Commit: a2f80abde3409a48ec61e0e937df7ee4e938e747
+Thu Apr 11 14:35:58 EDT 2024
 No Academic Integrity Log and Contract - YOU MUST INCLUDE Academic Integrity Log and Contract
 .gitignore NOT included - YOU MUST INCLUDE .gitignore
 Incorrect Project Structure : did not find Project4/project_docs
+Incorrect Project Structure : did not find Project4/test
 Checkstyle Errors in src files
-Checkstyle Errors in test files
-Failing at least one of your Unit & Integration Tests
+No Checkstyle Errors in test files
+Passing all of your Unit & Integration Tests
+
+Coverage for your Unit & Integration Tests
+Player
+45:getName() -> line: 0/1
+57:addCard() -> branch: 0/4; line: 0/7
+78:getHandPoints() -> line: 0/1
+87:getOverallPoints() -> line: 0/1
+95:addToHandPoints() -> line: 0/3
+108:getCard() -> branch: 0/4; line: 0/3
+125:hasActiveCardOfSuit() -> branch: 0/8; line: 0/6
+144:onlyHasHearts() -> branch: 0/8; line: 0/7
+168:getCardNames() -> branch: 0/4; line: 0/6
+186:toString() -> line: 0/1
+194:dumpCards() -> branch: 0/2; line: 0/4
+205:resetHandPoints() -> line: 0/2
+224:getMove() -> branch: 0/60; line: 0/42
+Hearts
+100:isHandFinished() -> branch: 0/2; line: 0/1
+107:removePlayedCards() -> branch: 0/2; line: 0/3
+118:getErrorMessage() -> line: 0/1
+127:getTurn() -> line: 0/1
+136:getWhoStartedTrick() -> line: 0/1
+145:getHumanPlayerCardNames() -> line: 0/1
+154:getStatus() -> line: 0/1
+165:getPlayerStatus() -> line: 0/1
+174:isGameOver() -> branch: 0/4; line: 0/4
+188:getWinnerName() -> branch: 0/4; line: 0/7
+205:getOverallPoints() -> branch: 0/2; line: 0/4
+217:checkForMoon() -> branch: 0/10; line: 0/13
+246:evaluateTrickCards() -> branch: 0/14; line: 0/25
+298:isAcceptableMove() -> branch: 0/30; line: 0/28
+358:getComputerMoveCardName() -> branch: 0/2; line: 0/7
+379:getPlayerMoveFilename() -> branch: 0/2; line: 0/7
+396:nextHand() -> branch: 0/6; line: 0/15
+426:dealCards() -> branch: 0/8; line: 0/8
+448:testDealCardsBackwards() -> branch: 0/8; line: 0/8
+467:testDealCardsByPlayer() -> branch: 0/8; line: 0/8
+489:getPlayer() -> line: 0/1
+496:testNextHand() -> branch: 0/2; line: 0/10
+518:setTurn() -> line: 0/3
+528:getTrickCards() -> line: 0/1
+539:toString() -> branch: 0/2; line: 0/4
+Deck
+54:getNext() -> line: 0/1
+62:getCards() -> line: 0/1
+71:shuffle() -> branch: 0/2; line: 0/9
+87:initialize() -> branch: 0/2; line: 0/4
+101:nextCard() -> branch: 0/2; line: 0/4
+117:equals() -> branch: 0/10; line: 0/8
+141:toString() -> branch: 0/2; line: 0/4
+HeartsGUI$CPUThread
+558:run() -> line: 0/6
+Card
+64:getSuit() -> line: 0/1
+72:getValue() -> line: 0/1
+80:hasBeenPlayed() -> line: 0/1
+88:setPlayed() -> line: 0/2
+97:isHeart() -> branch: 0/2; line: 0/3
+109:isQueenOfSpades() -> branch: 0/4; line: 0/3
+125:isHigherThan() -> branch: 0/4; line: 0/3
+141:equals() -> branch: 0/8; line: 0/6
+159:toString() -> line: 0/1
+172:compareTo() -> branch: 0/16; line: 0/15
