@@ -1,7 +1,7 @@
-Git Commit: 673f9447e56e70ac5f174662f7f22acc6a777ec5
-Thu Apr 11 14:34:33 EDT 2024
+Git Commit: b947f20ae85ecbf911f7562fa8dc2ab9f4d63229
+Thu Apr 11 14:34:48 EDT 2024
 No Academic Integrity Log and Contract - YOU MUST INCLUDE Academic Integrity Log and Contract
-.gitignore included
+.gitignore NOT included - YOU MUST INCLUDE .gitignore
 Checkstyle Errors in src files
 Checkstyle Errors in test files
 Failing at least one of your Unit & Integration Tests
