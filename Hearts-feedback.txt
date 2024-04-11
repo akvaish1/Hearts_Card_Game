@@ -1,13 +1,7 @@
-Git Commit: 7be15f52e5f224d121811cfe2408d7309d9a2a83
-Wed Apr 10 19:11:27 EDT 2024
+Git Commit: a8a134d2f8afb8e7ce2314dd242ce8e7901225ae
+Thu Apr 11 13:44:28 EDT 2024
 Contains Academic Integrity Log and Contract
 .gitignore included
-Student code or TS tests do not compile
-
-If your code is compiling and running locally, see the following list of hints to troubleshoot why your submission does not compile on the automated system:
-hint:  are you using the provided class constants from the project description?
-hint:  are you using the provided method(s) from the project description?
-hint:  are you spelling the methods correctly (including case)?
-hint:  are you including the correct parameters and their types in those methods?
-hint:  do your methods return the correct type?
-hint:  do your unit tests only test the methods included in the project description? -- JUnit tests should only test the methods found in the project description (not main(), userInterface(), or other helper methods)
+Checkstyle Errors in src files
+Checkstyle Errors in test files
+Failing at least one of your Unit & Integration Tests
