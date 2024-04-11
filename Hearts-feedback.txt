@@ -1,6 +1,6 @@
-Git Commit: a8a134d2f8afb8e7ce2314dd242ce8e7901225ae
-Thu Apr 11 13:44:28 EDT 2024
-Contains Academic Integrity Log and Contract
+Git Commit: 673f9447e56e70ac5f174662f7f22acc6a777ec5
+Thu Apr 11 14:34:33 EDT 2024
+No Academic Integrity Log and Contract - YOU MUST INCLUDE Academic Integrity Log and Contract
 .gitignore included
 Checkstyle Errors in src files
 Checkstyle Errors in test files
